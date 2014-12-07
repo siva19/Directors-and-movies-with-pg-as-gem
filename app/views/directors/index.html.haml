@@ -1,0 +1,32 @@
+- model_class = Director
+.page-header
+  %h1= t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:description)
+      %th List of movies
+      %th= t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @directors.each do |director|
+      %tr
+        %td= link_to director.id, director_path(director)
+        %td= director.name
+        %td= director.description
+        %td
+          = link_to t('.view', :default => t("helpers.links.view")),   
+            director_movies_path(director), :class => 'btn btn-default btn-xs' 
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")),         
+            edit_director_path(director), :class => 'btn btn-default btn-xs' 
+          -#
+          = link_to t('.destroy', :default => t("helpers.links.destroy")),
+            director_path(director),                                                                                     
+            :method => :delete,                                                                                          
+            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+            :class => 'btn btn-xs btn-danger'                                                                            
+= link_to t('.new', :default => t("helpers.links.new")),
+  new_director_path,                                    
+  :class => 'btn btn-primary'                           

@@ -1,0 +1,26 @@
+= form_for @director, :html => { :class => "form-horizontal director" } do |f|
+  - if @director.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@director.errors.count, "error")
+          prohibited this director from being saved:
+      .panel-body
+        %ul
+          - @director.errors.full_messages.each do |msg|
+            %li= msg
+  .form-group
+    = f.label :name, :class => 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, :class => 'form-control'
+    = f.error_span(:name)
+  .form-group
+    = f.label :description, :class => 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :description, :class => 'form-control'
+    = f.error_span(:description)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+        directors_path, :class => 'btn btn-default'                  |

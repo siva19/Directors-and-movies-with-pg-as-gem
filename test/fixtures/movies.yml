@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  cast: MyString
+  ratting: MyString
+  director_id: 
+
+two:
+  title: MyString
+  cast: MyString
+  ratting: MyString
+  director_id: 
